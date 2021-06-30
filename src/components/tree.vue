@@ -14,10 +14,10 @@
         [{{ isOpen ? '&#9660;' : '&#9658;' }}]
       </span>
       {{ node.name }}
-      <button
-          class="btn"
-          @click="$emit('add-item', node)"
-      ></button>
+<!--      <button-->
+<!--          class="btn"-->
+<!--          @click="$emit('add-item', node)"-->
+<!--      ></button>-->
     </div>
     <ul class="node__list" v-show="isOpen" v-if="isFolder">
       <tree
@@ -105,7 +105,9 @@ export default {
   justify-content: flex-start;
 }
 .node__list li  {
-
+  width: 2rem;
+  position: relative;
+  top: -10px;
 }
 .node__list .btn {
   left: 0;
@@ -115,9 +117,10 @@ export default {
   display: block;
   width: 1rem;
   height: 1rem;
-  margin-right: .5rem;
   position: relative;
   top: -3px;
+  cursor: pointer ;
+  margin-right: 1rem;
 }
 
 .btn {
