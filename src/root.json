@@ -1,7 +1,6 @@
 {
   "name": "Food",
   "children": [
-    {"name": "Plant"},
     {
       "name": "Plant",
       "children": [
