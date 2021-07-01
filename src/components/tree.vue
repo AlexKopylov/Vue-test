@@ -130,7 +130,6 @@ export default {
   width: 1.5rem;
   height: 1.5rem;
   position: relative;
-  left: 95%;
   z-index: 1;
   cursor: pointer;
   margin-left: 1rem;
