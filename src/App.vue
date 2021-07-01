@@ -1,78 +1,38 @@
 <template>
-  <tree
-      :node="root"
-      @make-folder="makeFolder"
-      @add-item="addItem"
-  />
+  <div class="wrapper">
+    <tree
+        :node="root"
+        @make-folder="makeFolder"
+        @add-item="addItem"
+    />
+    <pre v-html="JSON.stringify(root).trim()"></pre>
+  </div>
 </template>
 
 <script>
 import tree from "./components/tree";
+import root from './root.json'
 
 export default {
   name: 'App',
   data() {
     return {
-      root: {
-        name: 'Food',
-        children: [
-          {
-            name: "Plant",
-            children: [
-              {
-                name: "Fruits",
-                children: [
-                  {name: "hello"},
-                  {name: "wat"}]
-              },
-              {
-                name: "Vegetables",
-                children: [
-                  {name: "hello"},
-                  {name: "wat"}
-                ]
-              },
-            ]
-          },
-          {
-            name: "Animal",
-            children: [
-              {
-                name: "child folder",
-                children: [{name: "hello"}, {name: "wat"}]
-              },
-            ]
-          },
-          {
-            name: "child folder",
-            children: [
-              {
-                name: "child folder",
-                children: [{name: "hello"}, {name: "wat"}]
-              },
-              {name: "hello"},
-              {name: "wat"},
-              {
-                name: "child folder",
-                children: [{name: "hello"}, {name: "wat"}]
-              }
-            ]
-          }
-        ]
-      }
+      root,
     }
   },
   methods: {
     makeFolder: function (item) {
       this.$set(item, "children", []);
-      this.addItem(item);
+      this.addChild(item);
     },
+
     addItem: function (item) {
       item.children.push({
         name: "new Child",
         children: []
       })
     },
+
   },
   components: {
     tree
@@ -86,6 +46,11 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 #app {
   margin: 60px auto 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -93,5 +58,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
 }
 </style>

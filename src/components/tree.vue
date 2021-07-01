@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="">
+  <div class="tree-wrapper">
     <div
         :style="{'margin-left': `${depth * 20}px`}"
         @dblclick="makeFolder"
@@ -18,9 +18,9 @@
           @click="$emit('add-item', node)"
       ></button>
     </div>
-    <ul class="node__list" v-show="isOpen" v-if="isFolder">
-      <li>
+    <div class="node__list">
         <tree
+            v-show="isOpen" v-if="isFolder"
             class="node__item"
             v-for="(child, index) in node.children"
             :key="index"
@@ -29,15 +29,7 @@
             make-folder="$emit('make-folder', $event)"
             @add-item="$emit('add-item', $event)"
         />
-      </li>
-
-<!--      <li>-->
-<!--        <button-->
-<!--            class="btn"-->
-<!--            @click="$emit('add-item', node)"-->
-<!--        ></button>-->
-<!--      </li>-->
-    </ul>
+    </div>
   </div>
 </template>
 
@@ -78,6 +70,10 @@ export default {
 </script>
 
 <style scoped>
+.tree-wrapper {
+  width: 50%;
+}
+
 .node {
   padding: 1rem;
   background-color: #34cde3;
@@ -90,7 +86,6 @@ export default {
   position: relative;
   z-index: 0;
 }
-
 
 .node__item {
   position: relative;
