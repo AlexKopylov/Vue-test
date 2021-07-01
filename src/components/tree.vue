@@ -4,37 +4,39 @@
     <div
         :style="{'margin-left': `${depth * 20}px`}"
         @dblclick="makeFolder"
-
         class="node">
       <span
-          class="node-arrow type"
+          class="node-arrow"
           @click="toggle"
           v-if="isFolder"
           >
         [{{ isOpen ? '&#9660;' : '&#9658;' }}]
       </span>
       {{ node.name }}
-<!--      <button-->
-<!--          class="btn"-->
-<!--          @click="$emit('add-item', node)"-->
-<!--      ></button>-->
+      <button
+          class="btn"
+          @click="$emit('add-item', node)"
+      ></button>
     </div>
     <ul class="node__list" v-show="isOpen" v-if="isFolder">
-      <tree
-          class="node__item"
-          v-for="(child, index) in node.children"
-          :key="index"
-          :node="child"
-          :depth="depth + 1"
-          make-folder="$emit('make-folder', $event)"
-          @add-item="$emit('add-item', $event)"
-      />
       <li>
-        <button
-            class="btn"
-            @click="$emit('add-item', node)"
-        ></button>
+        <tree
+            class="node__item"
+            v-for="(child, index) in node.children"
+            :key="index"
+            :node="child"
+            :depth="depth + 1"
+            make-folder="$emit('make-folder', $event)"
+            @add-item="$emit('add-item', $event)"
+        />
       </li>
+
+<!--      <li>-->
+<!--        <button-->
+<!--            class="btn"-->
+<!--            @click="$emit('add-item', node)"-->
+<!--        ></button>-->
+<!--      </li>-->
     </ul>
   </div>
 </template>
@@ -55,9 +57,6 @@ export default {
     };
   },
   computed: {
-    // hasChildren() {
-    //   return this.node.children;
-    // },
     isFolder: function() {
       return this.node.children && this.node.children.length;
     }
@@ -83,7 +82,7 @@ export default {
   padding: 1rem;
   background-color: #34cde3;
   border-radius: 1rem;
-  width: 10rem;
+  width: 11rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
